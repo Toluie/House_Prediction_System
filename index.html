@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+</head>
+<body style="font-family: Arial; background-color: #f4f4f4; padding: 50px;">
+    <div style="background: white; max-width: 400px; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+        <h2>🏠 Price Predictor</h2>
+        <form action="/predict" method="POST">
+            <input type="number" name="OverallQual" placeholder="Overall Quality (1-10)" style="width:100%; margin-bottom:10px;" required>
+            <input type="number" name="GrLivArea" placeholder="Living Area (sqft)" style="width:100%; margin-bottom:10px;" required>
+            <input type="number" name="TotalBsmtSF" placeholder="Basement Size (sqft)" style="width:100%; margin-bottom:10px;" required>
+            <input type="number" name="GarageCars" placeholder="Garage Capacity (Cars)" style="width:100%; margin-bottom:10px;" required>
+            <input type="number" name="YearBuilt" placeholder="Year Built (e.g. 2005)" style="width:100%; margin-bottom:10px;" required>
+            <select name="Neighborhood" style="width:100%; margin-bottom:10px;">
+                <option value="CollgCr">College Creek</option>
+                <option value="Veenker">Veenker</option>
+                <option value="Crawfor">Crawford</option>
+                <option value="NoRidge">Northridge</option>
+                <option value="Mitchel">Mitchell</option>
+            </select>
+            <button type="submit" style="width:100%; padding:10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Predict Price</button>
+        </form>
+        {% if prediction %}
+        <div style="margin-top: 20px; text-align: center; color: #28a745;">
+            <h3>Estimated Price: {{ prediction }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
